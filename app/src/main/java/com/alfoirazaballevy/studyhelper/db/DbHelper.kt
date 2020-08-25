@@ -24,12 +24,14 @@ class DbHelper(
         val Query_Table = """
             CREATE TABLE Subject(
                 SubjectId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                SubjectName CHAR(30) NOT NULL
+                SubjectName CHAR(30) NOT NULL,
+                LastAccess DATE NOT NULL DEFAULT CURRENT_TIMESTAMP
             );
             CREATE TABLE Topic(
                 TopicId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                 TopicName CHAR(30) NOT NULL,
                 SubjectId CHAR(30) NOT NULL,
+                LastAccess DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (SubjectId) REFERENCES Subject(SubjectId) ON UPDATE CASCADE ON DELETE CASCADE
             );
             CREATE TABLE TopicAnswer(

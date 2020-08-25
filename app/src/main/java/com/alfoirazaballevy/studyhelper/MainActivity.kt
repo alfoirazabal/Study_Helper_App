@@ -6,40 +6,39 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.alfoirazaballevy.studyhelper.db.DbHelper
+import com.alfoirazaballevy.studyhelper.domain.Subject
+import com.alfoirazaballevy.studyhelper.list_items.ViewListSubjectAdapter
 
-class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
+class MainActivity : AppCompatActivity() {
 
     companion object {
-        lateinit var listSubjects : ListView
-        lateinit var searchSubjects : SearchView
-        lateinit var adapter : ArrayAdapter<String>
+        lateinit var recyclerView: RecyclerView
+        lateinit var layoutManager : RecyclerView.LayoutManager
+        lateinit var adapterRecyclerLinear : ViewListSubjectAdapter
+        lateinit var listSubjects : ArrayList<Subject>
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        loadSubjects()
 
-        listSubjects = findViewById(R.id.lst_subjects)
-        searchSubjects = findViewById(R.id.searchview_subjects)
+        recyclerView = findViewById(R.id.recview_subjects)
+        recyclerView.setHasFixedSize(true)
+        layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = layoutManager
 
-        val dbHlp = DbHelper(applicationContext)
+        adapterRecyclerLinear = ViewListSubjectAdapter(this, listSubjects)
+        recyclerView.adapter = adapterRecyclerLinear
 
-        val subjects = dbHlp.getSubjects()
-        val subjNames = subjects.map { subj -> subj.name }
-
-        adapter = ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, subjNames)
-        listSubjects.adapter = adapter
-
-        searchSubjects.setOnQueryTextListener(this)
     }
 
-    override fun onQueryTextSubmit(query : String) : Boolean {
-        return false
+    private fun loadSubjects() {
+        var dbHlp = DbHelper(this)
+        listSubjects = dbHlp.getSubjects()
     }
 
-    override fun onQueryTextChange(newText : String) : Boolean {
-        adapter.filter.filter(newText)
-        return false
-    }
 }
