@@ -33,31 +33,44 @@ class DbHelper(
                 SubjectId CHAR(30) NOT NULL,
                 FOREIGN KEY (SubjectId) REFERENCES Subject(SubjectId) ON UPDATE CASCADE ON DELETE CASCADE
             );
-            CREATE TABLE TrueOrFalse(
+            CREATE TABLE TopicAnswer(
+                AnswerId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                 TopicId INTEGER NOT NULL,
+                FOREIGN KEY (TopicId) REFERENCES Topic(TopicId) ON UPDATE CASCADE ON DELETE CASCADE
+            );
+            CREATE TABLE TrueOrFalse(
+                AnswerId INTEGER NOT NULL,
                 QuestionPositive CHAR(120) NOT NULL,
                 QuestionNegative CHAR(120) NOT NULL,
                 ResultPositive CHAR(1) NOT NULL,
                 Score REAL(3, 1) NOT NULL DEFAULT 1,
-                FOREIGN KEY (TopicId) REFERENCES Topic(TopicId) ON UPDATE CASCADE ON DELETE CASCADE
+                FOREIGN KEY (AnswerId) REFERENCES TopicAnswer(AnswerId) ON UPDATE CASCADE ON DELETE CASCADE
             );
             CREATE TABLE MultOpc(
-                MultOpcId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                TopicId INTEGER NOT NULL,
-                RightAnswer CHAR(120) NOT NULL,
+                AnswerId INTEGER NOT NULL,
+                AnswerText CHAR(120) NOT NULL,
                 Score REAL(3, 1) NOT NULL DEFAULT 1,
-                FOREIGN KEY (TopicId) REFERENCES Topic(TopicId) ON UPDATE CASCADE ON DELETE CASCADE
-            );
-            CREATE TABLE MultOpcWrongAnswer(
-                MultOpcId INTEGER NOT NULL,
-                WrongAnswer CHAR(120) NOT NULL,
-                FOREIGN KEY (MultOpcId) REFERENCES MultOpc(MultOpcId) ON UPDATE CASCADE ON DELETE CASCADE
+                FOREIGN KEY (AnswerId) REFERENCES TopicAnswer(AnswerId) ON UPDATE CASCADE ON DELETE CASCADE
             );
             CREATE TABLE TextualQuestion(
-                TopicId INTEGER NOT NULL,
+                AnswerId INTEGER NOT NULL,
                 Question CHAR(120) NOT NULL,
                 Score REAL(3, 1) NOT NULL DEFAULT 1,
+                FOREIGN KEY (AnswerId) REFERENCES TopicAnswer(AnswerId) ON UPDATE CASCADE ON DELETE CASCADE
+            );
+            CREATE TABLE Result(
+                ResultId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                TopicId INTEGER NOT NULL,
+                Description CHAR(120) NOT NULL,
+                Date DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (TopicId) REFERENCES Topic(TopicId) ON UPDATE CASCADE ON DELETE CASCADE
+            );
+            CREATE TABLE ResultAnswer(
+                ResultId INTEGER NOT NULL,
+                AnswerId INTEGER NOT NULL,
+                Score REAL(3, 1) NOT NULL DEFAULT 0,
+                FOREIGN KEY (ResultId) REFERENCES Result(ResultId) ON UPDATE CASCADE ON DELETE CASCADE,
+                FOREIGN KEY (AnswerId) REFERENCES TopicAnswer(AnswerId) ON UPDATE CASCADE ON DELETE CASCADE
             );
         """.trimIndent()
         db!!.execSQL(Query_Table)
