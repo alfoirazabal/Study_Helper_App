@@ -1,10 +1,12 @@
 package com.alfoirazaballevy.studyhelper
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.SearchView
+import com.alfoirazaballevy.studyhelper.db.DbHelper
 
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
@@ -21,13 +23,12 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         listSubjects = findViewById(R.id.lst_subjects)
         searchSubjects = findViewById(R.id.searchview_subjects)
 
-        val subjects = ArrayList<String>()
+        val dbHlp = DbHelper(applicationContext)
 
-        subjects.add("Subj1")
-        subjects.add("Subj2")
-        subjects.add("Subj3")
+        val subjects = dbHlp.getSubjects()
+        val subjNames = subjects.map { subj -> subj.name }
 
-        adapter = ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, subjects)
+        adapter = ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, subjNames)
         listSubjects.adapter = adapter
 
         searchSubjects.setOnQueryTextListener(this)

@@ -1,18 +1,17 @@
 package com.alfoirazaballevy.studyhelper.db
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.alfoirazaballevy.studyhelper.domain.Subject
 
 class DbHelper(
-            context: Context?,
-            name: String?,
-            factory: SQLiteDatabase.CursorFactory?,
-            version: Int
+            context: Context?
     ) : SQLiteOpenHelper(
             context,
             context!!.getExternalFilesDir(null)!!.absolutePath + "/" + DATABASE_NAME,
-            factory,
+            null,
             DATABASE_VERSION
     ) {
 
@@ -77,7 +76,63 @@ class DbHelper(
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        TODO("Not yet implemented")
+        val Query_Drop = """
+            DROP TABLE TrueOrFalse;
+            DROP TABLE MultOpc;
+            DROP TABLE TextualQuestion;
+            DROP TABLE TopicAnswer;
+            DROP TABLE ResultAnswer;
+            DROP TABLE Result;
+            DROP TABLE Topic;
+            DROP TABLE Subject;
+        """.trimIndent()
+        db!!.execSQL(Query_Drop)
+        onCreate(db)
+    }
+
+    // Subjects
+    fun getSubjects() : ArrayList<Subject> {
+        val lstSubjects = ArrayList<Subject>()
+        val db = this.readableDatabase
+        val cols = arrayOf("SubjectId", "SubjectName")
+        println("Printing Cols...")
+        println(cols[0])
+        println(cols[1])
+        println("End cols printing...")
+        val cursor = db.query("Subject", cols, null, null, null, null, null, null)
+
+        val iId = cursor.getColumnIndex("SubjectId")
+        val iName = cursor.getColumnIndex("SubjectName")
+
+        try {
+            while (cursor.moveToNext()) {
+                val id = cursor.getLong(iId)
+                val name = cursor.getString(iName)
+                val newSubj = Subject(id, name)
+                lstSubjects.add(newSubj)
+            }
+        } finally {
+            cursor.close()
+        }
+        db.close()
+        return lstSubjects
+
+    }
+
+    fun addSubject(subjectName : String) : Long {
+        val db = this.writableDatabase
+        val conVals = ContentValues()
+        conVals.put("SubjectName", subjectName)
+        return db.insert("Subject", null, conVals)
+    }
+
+    fun deleteSubject(subject : Subject) {
+        val db = this.writableDatabase
+        db.delete(
+            "Subject",
+            "SubjectId = ?",
+            Array<String>(1){subject.id.toString()}
+        )
     }
 
 }
