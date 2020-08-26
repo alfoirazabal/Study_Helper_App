@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.alfoirazaballevy.studyhelper.R
 import com.alfoirazaballevy.studyhelper.domain.Subject
+import java.time.ZoneId
 
 class ViewListSubjectAdapter(ctx: Context, lstSubjs: ArrayList<Subject>) :
     RecyclerView.Adapter<ViewListSubjectAdapter.MyHolder>() {
@@ -26,7 +27,9 @@ class ViewListSubjectAdapter(ctx: Context, lstSubjs: ArrayList<Subject>) :
     }
 
     override fun onBindViewHolder(holder: ViewListSubjectAdapter.MyHolder, position: Int) {
-        MyHolder.subjectName.text = lstSubjects.get(position).name
+        val subject = lstSubjects.get(position)
+        MyHolder.subjectName.text = subject.name
+        MyHolder.lastAccess.text = subject.lastAccess.toLocaleString()
     }
 
     override fun getItemCount(): Int {
@@ -37,10 +40,12 @@ class ViewListSubjectAdapter(ctx: Context, lstSubjs: ArrayList<Subject>) :
 
         companion object {
             lateinit var subjectName : TextView
+            lateinit var lastAccess : TextView
         }
 
         constructor(itemView : View) : super(itemView) {
             subjectName = itemView.findViewById(R.id.txt_subject_name)
+            lastAccess = itemView.findViewById(R.id.txt_ultimo_acceso)
         }
 
     }

@@ -5,6 +5,8 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.alfoirazaballevy.studyhelper.domain.Subject
+import java.sql.Date
+import java.text.SimpleDateFormat
 
 class DbHelper(
             context: Context?
@@ -96,21 +98,24 @@ class DbHelper(
     fun getSubjects() : ArrayList<Subject> {
         val lstSubjects = ArrayList<Subject>()
         val db = this.readableDatabase
-        val cols = arrayOf("SubjectId", "SubjectName")
+        val cols = arrayOf("SubjectId", "SubjectName", "LastAccess")
         println("Printing Cols...")
         println(cols[0])
         println(cols[1])
         println("End cols printing...")
-        val cursor = db.query("Subject", cols, null, null, null, null, null, null)
+        val cursor = db.query("Subject", cols, null, null, null, null, "LastAccess DESC", null)
 
         val iId = cursor.getColumnIndex("SubjectId")
         val iName = cursor.getColumnIndex("SubjectName")
+        val iLastAccess = cursor.getColumnIndex("LastAccess")
 
         try {
             while (cursor.moveToNext()) {
                 val id = cursor.getLong(iId)
                 val name = cursor.getString(iName)
-                val newSubj = Subject(id, name)
+                var lastAccess = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
+                        .parse(cursor.getString(iLastAccess))
+                val newSubj = Subject(id, name, lastAccess)
                 lstSubjects.add(newSubj)
             }
         } finally {
