@@ -8,6 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.alfoirazaballevy.studyhelper.R
 import com.alfoirazaballevy.studyhelper.domain.Subject
+import kotlinx.android.synthetic.main.list_subject.view.*
 
 class ViewListSubjectAdapter(ctx: Context, lstSubjs: ArrayList<Subject>) :
     RecyclerView.Adapter<ViewListSubjectAdapter.MyHolder>() {
@@ -32,6 +33,32 @@ class ViewListSubjectAdapter(ctx: Context, lstSubjs: ArrayList<Subject>) :
         val subject = lstSubjects[position]
         MyHolder.subjectName.text = subject.name
         MyHolder.lastAccess.text = subject.lastAccess.toLocaleString()
+        MyHolder.containerSubject.setOnLongClickListener {
+            println("CLICK LISTENING...")
+            showPopup(MyHolder.containerSubject, subject.id)
+        }
+
+    }
+
+    private fun showPopup(view : View, subjectId : Long) : Boolean {
+        val popup = PopupMenu(context, view)
+        popup.inflate(R.menu.ctx_menu_subject)
+
+        popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item : MenuItem? ->
+            when(item!!.itemId) {
+                R.id.option_modify -> {
+                    println("Modify Option Selected on $subjectId")
+                }
+                R.id.option_delete -> {
+                    println("Delete Option Selected on $subjectId")
+                }
+            }
+            true
+        })
+
+        popup.show()
+
+        return true
     }
 
     override fun getItemCount(): Int {
@@ -50,31 +77,6 @@ class ViewListSubjectAdapter(ctx: Context, lstSubjs: ArrayList<Subject>) :
             subjectName = itemView.findViewById(R.id.txt_subject_name)
             lastAccess = itemView.findViewById(R.id.txt_ultimo_acceso)
             containerSubject = itemView.findViewById(R.id.container_subject)
-            containerSubject.setOnLongClickListener {
-                showPopup()
-            }
-        }
-
-        private fun showPopup() : Boolean {
-            val popup = PopupMenu(itemView.context, itemView)
-            popup.inflate(R.menu.ctx_menu_subject)
-
-            popup.setOnMenuItemClickListener { item: MenuItem? ->
-                when (item!!.itemId) {
-                    R.id.option_delete -> {
-                        println("OptionDelete Tapped")
-                    }
-                    R.id.option_modify -> {
-                        println("OptionModify Tapped")
-                    }
-                }
-
-                true
-            }
-
-            popup.show()
-
-            return true
         }
 
     }
