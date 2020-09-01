@@ -1,27 +1,26 @@
-package com.alfoirazaballevy.studyhelper.list_items.subject
+package com.alfoirazaballevy.studyhelper.subject.list_items
 
 import android.content.Context
 import android.view.*
-import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alfoirazaballevy.studyhelper.R
 import com.alfoirazaballevy.studyhelper.domain.Subject
+import com.alfoirazaballevy.studyhelper.subject.dialogs.ListDialog
 
 class ListAdapter(ctx: Context, lstSubjs: ArrayList<Subject>) :
     RecyclerView.Adapter<ListAdapter.MyHolder>() {
 
     private var context : Context = ctx
-    private var lstSubjects : ArrayList<Subject> = lstSubjs
+    var lstSubjects : ArrayList<Subject> = lstSubjs
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ) : MyHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.list_subject, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.subject_list, parent, false)
 
         val holder =
             MyHolder(
@@ -38,7 +37,12 @@ class ListAdapter(ctx: Context, lstSubjs: ArrayList<Subject>) :
         MyHolder.subjectName.text = subject.name
         MyHolder.lastAccess.text = subject.lastAccess.toLocaleString()
         MyHolder.containerSubject.setOnLongClickListener(View.OnLongClickListener {
-            ListDialog(subject.id, subject.name).show(
+            ListDialog(
+                subject.id,
+                subject.name,
+                position,
+                this
+            ).show(
                 (context as AppCompatActivity).supportFragmentManager, "DisplayListFragment"
             )
             true

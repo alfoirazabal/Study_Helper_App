@@ -133,12 +133,12 @@ class DbHelper(
         return db.insert("Subject", null, conVals)
     }
 
-    fun deleteSubject(subject : Subject) {
+    fun deleteSubject(subjectId : Long) {
         val db = this.writableDatabase
         db.delete(
             "Subject",
             "SubjectId = ?",
-            Array<String>(1){subject.id.toString()}
+            Array<String>(1){subjectId.toString()}
         )
     }
 
