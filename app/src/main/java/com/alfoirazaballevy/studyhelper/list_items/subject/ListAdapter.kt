@@ -1,17 +1,18 @@
-package com.alfoirazaballevy.studyhelper.list_items
+package com.alfoirazaballevy.studyhelper.list_items.subject
 
 import android.content.Context
 import android.view.*
 import android.widget.PopupMenu
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alfoirazaballevy.studyhelper.R
 import com.alfoirazaballevy.studyhelper.domain.Subject
-import kotlinx.android.synthetic.main.list_subject.view.*
 
-class ViewListSubjectAdapter(ctx: Context, lstSubjs: ArrayList<Subject>) :
-    RecyclerView.Adapter<ViewListSubjectAdapter.MyHolder>() {
+class ListAdapter(ctx: Context, lstSubjs: ArrayList<Subject>) :
+    RecyclerView.Adapter<ListAdapter.MyHolder>() {
 
     private var context : Context = ctx
     private var lstSubjects : ArrayList<Subject> = lstSubjs
@@ -22,7 +23,10 @@ class ViewListSubjectAdapter(ctx: Context, lstSubjs: ArrayList<Subject>) :
     ) : MyHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.list_subject, parent, false)
 
-        val holder = MyHolder(view)
+        val holder =
+            MyHolder(
+                view
+            )
         return holder
     }
 
@@ -33,32 +37,13 @@ class ViewListSubjectAdapter(ctx: Context, lstSubjs: ArrayList<Subject>) :
         val subject = lstSubjects[position]
         MyHolder.subjectName.text = subject.name
         MyHolder.lastAccess.text = subject.lastAccess.toLocaleString()
-        MyHolder.containerSubject.setOnLongClickListener {
-            println("CLICK LISTENING...")
-            showPopup(MyHolder.containerSubject, subject.id)
-        }
-
-    }
-
-    private fun showPopup(view : View, subjectId : Long) : Boolean {
-        val popup = PopupMenu(context, view)
-        popup.inflate(R.menu.ctx_menu_subject)
-
-        popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item : MenuItem? ->
-            when(item!!.itemId) {
-                R.id.option_modify -> {
-                    println("Modify Option Selected on $subjectId")
-                }
-                R.id.option_delete -> {
-                    println("Delete Option Selected on $subjectId")
-                }
-            }
+        MyHolder.containerSubject.setOnLongClickListener(View.OnLongClickListener {
+            ListDialog(subject.id, subject.name).show(
+                (context as AppCompatActivity).supportFragmentManager, "DisplayListFragment"
+            )
             true
         })
 
-        popup.show()
-
-        return true
     }
 
     override fun getItemCount(): Int {

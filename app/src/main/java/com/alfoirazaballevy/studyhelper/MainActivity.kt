@@ -1,16 +1,12 @@
 package com.alfoirazaballevy.studyhelper
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alfoirazaballevy.studyhelper.db.DbHelper
 import com.alfoirazaballevy.studyhelper.domain.Subject
-import com.alfoirazaballevy.studyhelper.list_items.ViewListSubjectAdapter
+import com.alfoirazaballevy.studyhelper.list_items.subject.ListAdapter
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -19,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         lateinit var recyclerView: RecyclerView
         lateinit var layoutManager : RecyclerView.LayoutManager
-        lateinit var adapterRecyclerLinear : ViewListSubjectAdapter
+        lateinit var adapterRecyclerLinear : ListAdapter
         lateinit var listSubjects : ArrayList<Subject>
     }
 
@@ -49,7 +45,11 @@ class MainActivity : AppCompatActivity() {
         layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
 
-        adapterRecyclerLinear = ViewListSubjectAdapter(this, listSubjects)
+        adapterRecyclerLinear =
+            ListAdapter(
+                this,
+                listSubjects
+            )
         recyclerView.adapter = adapterRecyclerLinear
 
     }
