@@ -3,15 +3,6 @@ package com.alfoirazaballevy.studyhelper.domain
 import java.util.*
 
 class Topic(
-    theTopicId : Long,
-    theTopicName : String,
-    theSubjectId : Long,
-    theLastAccess : Date
-) {
-
-    val topicId = theTopicId
-    val topicName = theTopicName
-    val subjectId = theSubjectId
-    val theLastAccess = theLastAccess
-
-}
+    override val id: Long, override val name: String, override val lastAccess: Date,
+    val subjectId : Long
+) : ListableTypeOne()

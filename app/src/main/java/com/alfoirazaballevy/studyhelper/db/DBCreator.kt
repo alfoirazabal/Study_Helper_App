@@ -1,5 +1,6 @@
 package com.alfoirazaballevy.studyhelper.db
 
+import android.database.sqlite.SQLiteDatabase
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -68,22 +69,18 @@ enum class DBResultAnswer (override val identName : String, override val typeArg
     CONST_FK_TOPIC_ANSWER("", "FOREIGN KEY (AnswerId) REFERENCES TopicAnswer(AnswerId) ON UPDATE CASCADE ON DELETE CASCADE")
 }
 
-class DBTablesCreator() {
+class DBTablesCreator(val db : SQLiteDatabase?) {
 
-    fun generateTables() : String {
+    fun generateTables() {
 
-        var str = ""
-
-        str += createFromTableEntity(DBSubject.values())
-        str += createFromTableEntity(DBTopic.values())
-        str += createFromTableEntity(DBTopicAnswer.values())
-        str += createFromTableEntity(DBTrueOrFalse.values())
-        str += createFromTableEntity(DBMultOpc.values())
-        str += createFromTableEntity(DBTextualQuestion.values())
-        str += createFromTableEntity(DBResult.values())
-        str += createFromTableEntity(DBResultAnswer.values())
-
-        return str
+        db?.execSQL(createFromTableEntity(DBSubject.values()))
+        db?.execSQL(createFromTableEntity(DBTopic.values()))
+        db?.execSQL(createFromTableEntity(DBTopicAnswer.values()))
+        db?.execSQL(createFromTableEntity(DBTrueOrFalse.values()))
+        db?.execSQL(createFromTableEntity(DBMultOpc.values()))
+        db?.execSQL(createFromTableEntity(DBTextualQuestion.values()))
+        db?.execSQL(createFromTableEntity(DBResult.values()))
+        db?.execSQL(createFromTableEntity(DBResultAnswer.values()))
 
     }
 

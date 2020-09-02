@@ -7,12 +7,13 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
+import com.alfoirazaballevy.studyhelper.layoutadapters.ListAdapter
 
 class ListDialog(
     private val subjectId: Long,
     private val subjectName: String,
     private val listViewPosition: Int,
-    private val adapter: com.alfoirazaballevy.studyhelper.subject.list_items.ListAdapter
+    private val adapter: ListAdapter
 ) : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

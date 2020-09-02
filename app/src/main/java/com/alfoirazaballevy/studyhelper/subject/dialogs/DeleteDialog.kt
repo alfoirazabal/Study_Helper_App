@@ -6,13 +6,14 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import com.alfoirazaballevy.studyhelper.layoutadapters.ListAdapter
 import com.alfoirazaballevy.studyhelper.db.DbHelper
 
 class DeleteDialog(
     private val subjectId: Long,
     private val subjectName: String,
     private val listViewPosition: Int,
-    private val adapter: com.alfoirazaballevy.studyhelper.subject.list_items.ListAdapter
+    private val adapter: ListAdapter
 ) : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -25,7 +26,7 @@ class DeleteDialog(
         alDiagBld.setPositiveButton("SI", DialogInterface.OnClickListener { dialogInterface, i ->
             val dbHlp = DbHelper(context)
             dbHlp.deleteSubject(subjectId)
-            adapter.lstSubjects.removeAt(listViewPosition)
+            adapter.lstObjects.removeAt(listViewPosition)
             adapter.notifyDataSetChanged()
 
         })

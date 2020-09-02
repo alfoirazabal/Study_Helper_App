@@ -7,14 +7,13 @@ import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import com.alfoirazaballevy.studyhelper.MainActivity
 import com.alfoirazaballevy.studyhelper.R
 import com.alfoirazaballevy.studyhelper.db.DbHelper
 
 class AddSubject : AppCompatActivity() {
 
     companion object {
-        private lateinit var txtSubjectName : EditText
+        private lateinit var etxtSubjectName : EditText
         private lateinit var btnAddSubject : Button
     }
 
@@ -22,12 +21,12 @@ class AddSubject : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.subject_add)
 
-        txtSubjectName = findViewById(R.id.txt_subli_name)
+        etxtSubjectName = findViewById(R.id.etxt_subli_name)
         btnAddSubject = findViewById(R.id.btn_add_subject)
 
-        txtSubjectName.addTextChangedListener(object : TextWatcher {
+        etxtSubjectName.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
-                btnAddSubject.isEnabled = !txtSubjectName.text.toString().equals("")
+                btnAddSubject.isEnabled = !etxtSubjectName.text.toString().equals("")
             }
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -35,12 +34,10 @@ class AddSubject : AppCompatActivity() {
         })
 
         btnAddSubject.setOnClickListener {
-            val subjectName = txtSubjectName.text.toString()
-            var dbHlp = DbHelper(applicationContext)
+            val subjectName = etxtSubjectName.text.toString()
+            val dbHlp = DbHelper(applicationContext)
             dbHlp.addSubject(subjectName)
 
-            val actIntSubj = Intent(this@AddSubject, MainActivity::class.java)
-            startActivity(actIntSubj)
             finish()
         }
     }
