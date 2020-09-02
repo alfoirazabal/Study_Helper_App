@@ -22,7 +22,7 @@ class AddSubject : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.subject_add)
 
-        txtSubjectName = findViewById(R.id.txt_subject_name)
+        txtSubjectName = findViewById(R.id.txt_subli_name)
         btnAddSubject = findViewById(R.id.btn_add_subject)
 
         txtSubjectName.addTextChangedListener(object : TextWatcher {

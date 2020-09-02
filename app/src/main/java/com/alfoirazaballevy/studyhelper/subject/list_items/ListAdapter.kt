@@ -20,7 +20,7 @@ class ListAdapter(ctx: Context, lstSubjs: ArrayList<Subject>) :
         parent: ViewGroup,
         viewType: Int
     ) : MyHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.subject_list, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.list_subject_topic, parent, false)
 
         val holder =
             MyHolder(
@@ -36,7 +36,7 @@ class ListAdapter(ctx: Context, lstSubjs: ArrayList<Subject>) :
         val subject = lstSubjects[position]
         MyHolder.subjectName.text = subject.name
         MyHolder.lastAccess.text = subject.lastAccess.toLocaleString()
-        MyHolder.containerSubject.setOnLongClickListener(View.OnLongClickListener {
+        MyHolder.containerSubject.setOnLongClickListener {
             ListDialog(
                 subject.id,
                 subject.name,
@@ -46,7 +46,11 @@ class ListAdapter(ctx: Context, lstSubjs: ArrayList<Subject>) :
                 (context as AppCompatActivity).supportFragmentManager, "DisplayListFragment"
             )
             true
-        })
+        }
+
+        MyHolder.containerSubject.setOnClickListener {
+
+        }
 
     }
 
@@ -63,8 +67,8 @@ class ListAdapter(ctx: Context, lstSubjs: ArrayList<Subject>) :
         }
 
         init {
-            subjectName = itemView.findViewById(R.id.txt_subject_name)
-            lastAccess = itemView.findViewById(R.id.txt_ultimo_acceso)
+            subjectName = itemView.findViewById(R.id.txt_subli_name)
+            lastAccess = itemView.findViewById(R.id.txt_subli_ultimo_acceso)
             containerSubject = itemView.findViewById(R.id.container_subject)
         }
 

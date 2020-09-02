@@ -29,7 +29,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txt_subject_name"
+            android:id="@+id/txt_subli_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
