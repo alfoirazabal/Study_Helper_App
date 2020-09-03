@@ -1,0 +1,3 @@
+# List of known bugs...
+* ⚠️ Potential SQLite storage leak detected on failed deletion constraints:
+> _Error found while deleting a subject containing a bunch of topics, the DB won't remove the orphan topics_

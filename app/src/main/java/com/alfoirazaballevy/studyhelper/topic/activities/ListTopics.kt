@@ -1,7 +1,7 @@
 package com.alfoirazaballevy.studyhelper.topic.activities
 
+import android.content.Intent
 import android.os.Bundle
-import android.service.autofill.TextValueSanitizer
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,11 +11,12 @@ import com.alfoirazaballevy.studyhelper.R
 import com.alfoirazaballevy.studyhelper.db.DbHelper
 import com.alfoirazaballevy.studyhelper.domain.ListableTypeOne
 import com.alfoirazaballevy.studyhelper.domain.Topic
-import com.alfoirazaballevy.studyhelper.layoutadapters.ListAdapterSubject
 import com.alfoirazaballevy.studyhelper.layoutadapters.ListAdapterTopic
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ListTopics() : AppCompatActivity() {
+
+    private var subjectId : Long = -1
 
     companion object {
         private lateinit var txtSubjectName : TextView
@@ -30,15 +31,15 @@ class ListTopics() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.topic_view)
 
-        txtSubjectName = findViewById(R.id.txt_topic_name)
+        txtSubjectName = findViewById(R.id.txt_subject_name)
 
         val bundle = this.intent.extras
-        val subjectId = bundle!!.getLong("SUBJID")
+        subjectId = bundle!!.getLong("SUBJID")
         val subjectName = bundle!!.getString("SUBJNAME")
 
         txtSubjectName.text = subjectName
 
-        listTopics = loadTopics(subjectId)
+        listTopics = loadTopics()
 
         recyclerView = findViewById(R.id.recview_topic)
         layoutManager = LinearLayoutManager(this)
@@ -53,9 +54,28 @@ class ListTopics() : AppCompatActivity() {
 
         faBtnAddTopic = findViewById(R.id.fa_button_add_topic)
 
+        faBtnAddTopic.setOnClickListener {
+            val newInt = Intent(this@ListTopics, AddTopic::class.java)
+            newInt.putExtra("SUBJECTID", subjectId)
+            newInt.putExtra("SUBJECTNAME", subjectName)
+            startActivity(newInt)
+        }
+
     }
 
-    private fun loadTopics(subjectId : Long) : ArrayList<Topic> {
+    override fun onResume() {
+        reloadList()
+        super.onResume()
+    }
+
+    private fun reloadList() {
+        val lstObj = ArrayList<ListableTypeOne>()
+        lstObj.addAll(loadTopics())
+        adapterRecyclerLinear.lstObjects = lstObj
+        adapterRecyclerLinear.updateDataset()
+    }
+
+    private fun loadTopics() : ArrayList<Topic> {
         val dbHlp = DbHelper(applicationContext)
         return dbHlp.getTopics(subjectId)
     }

@@ -16,11 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".subject.activities.AddSubject"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
+        <activity android:name=".subject.activities.AddSubject" />
         <activity android:name=".topic.activities.ListTopics" />
+        <activity android:name=".topic.activities.AddTopic" />
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 

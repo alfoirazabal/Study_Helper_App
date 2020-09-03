@@ -96,8 +96,9 @@ class DbHelper(
         val db = this.writableDatabase
         val conVals = ContentValues()
         conVals.put(DBSubject.COL_NAME.identName, subjectName)
-        return db.insert(DBSubject.TABLE_TITLE.identName, null, conVals)
+        val insId = db.insert(DBSubject.TABLE_TITLE.identName, null, conVals)
         db.close()
+        return insId
     }
 
     fun deleteSubject(subjectId : Long) {
@@ -167,6 +168,16 @@ class DbHelper(
 
         return lstTopics
 
+    }
+
+    fun addTopic(subjectId : Long, topicName : String) : Long {
+        val db = this.writableDatabase
+        val conVals = ContentValues()
+        conVals.put(DBTopic.COL_SUBJECT.identName, subjectId)
+        conVals.put(DBTopic.COL_NAME.identName, topicName)
+        val insId = db.insert(DBTopic.TABLE_TITLE.identName, null, conVals)
+        db.close()
+        return insId
     }
 
 }
