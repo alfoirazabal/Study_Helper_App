@@ -24,24 +24,24 @@ class DbHelper(
         private val DATABASE_VERSION = 1
     }
 
+    override fun onOpen(db: SQLiteDatabase?) {
+        db!!.execSQL("PRAGMA foreign_keys = ON")
+    }
+
     override fun onCreate(db: SQLiteDatabase?) {
         val tablesCreator = DBTablesCreator(db)
         tablesCreator.generateTables()
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        // ❌️ WONT WORK! ❌️️ IT HAS TO BE DONE STMT BY STMT, NOT RUNNING ALL WITH db!!execSQL ❌️️
-        val Query_Drop = """
-            DROP TABLE ${DBTrueOrFalse.TABLE_TITLE.identName};
-            DROP TABLE ${DBMultOpc.TABLE_TITLE.identName};
-            DROP TABLE ${DBTextualQuestion.TABLE_TITLE.identName};
-            DROP TABLE ${DBTopicAnswer.TABLE_TITLE.identName};
-            DROP TABLE ${DBResultAnswer.TABLE_TITLE.identName};
-            DROP TABLE ${DBResult.TABLE_TITLE.identName};
-            DROP TABLE ${DBTopic.TABLE_TITLE.identName};
-            DROP TABLE ${DBSubject.TABLE_TITLE.identName};
-        """.trimIndent()
-        db!!.execSQL(Query_Drop)
+        db?.execSQL("DROP TABLE ${DBTrueOrFalse.TABLE_TITLE.identName}")
+        db?.execSQL("DROP TABLE ${DBMultOpc.TABLE_TITLE.identName}")
+        db?.execSQL("DROP TABLE ${DBTextualQuestion.TABLE_TITLE.identName}")
+        db?.execSQL("DROP TABLE ${DBTopicAnswer.TABLE_TITLE.identName}")
+        db?.execSQL("DROP TABLE ${DBResultAnswer.TABLE_TITLE.identName}")
+        db?.execSQL("DROP TABLE ${DBResult.TABLE_TITLE.identName}")
+        db?.execSQL("DROP TABLE ${DBTopic.TABLE_TITLE.identName}")
+        db?.execSQL("DROP TABLE ${DBSubject.TABLE_TITLE.identName}")
         onCreate(db)
     }
 
