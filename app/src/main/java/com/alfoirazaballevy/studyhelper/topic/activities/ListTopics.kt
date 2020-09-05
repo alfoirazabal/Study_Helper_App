@@ -47,7 +47,7 @@ class ListTopics() : AppCompatActivity() {
 
         adapterRecyclerLinear =
             ListAdapterTopic(
-                applicationContext,
+                this,
                 listTopics
             )
         recyclerView.adapter = adapterRecyclerLinear

@@ -180,4 +180,14 @@ class DbHelper(
         return insId
     }
 
+    fun deleteTopic(topicId : Long) {
+        val db = this.writableDatabase
+        db.delete(
+            DBTopic.TABLE_TITLE.identName,
+            "${DBTopic.COL_ID.identName} = ?",
+            Array<String>(1){topicId.toString()}
+        )
+        db.close()
+    }
+
 }

@@ -13,7 +13,7 @@ import com.alfoirazaballevy.studyhelper.topic.activities.ListTopics
 import java.util.ArrayList
 
 class ListAdapterSubject(
-    ctx : Context,
+    var ctx : Context,
     var subjects : ArrayList<Subject>
 ) : ListAdapter(ctx, convertToSOLTOne(subjects)) {
 
@@ -24,7 +24,7 @@ class ListAdapterSubject(
             position,
             this
         ).show(
-            (context as AppCompatActivity).supportFragmentManager, "DisplayListFragment"
+            (ctx as AppCompatActivity).supportFragmentManager, "DisplayListFragment"
         )
         return true
     }

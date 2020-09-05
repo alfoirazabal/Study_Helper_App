@@ -1,17 +1,27 @@
 package com.alfoirazaballevy.studyhelper.layoutadapters
 
 import android.content.Context
+import androidx.appcompat.app.AppCompatActivity
 import com.alfoirazaballevy.studyhelper.domain.ListableTypeOne
-import com.alfoirazaballevy.studyhelper.domain.Subject
 import com.alfoirazaballevy.studyhelper.domain.Topic
-import com.alfoirazaballevy.studyhelper.topic.activities.ListTopics
+import com.alfoirazaballevy.studyhelper.topic.dialogs.ListDialog
 
 class ListAdapterTopic(
-    ctx : Context,
-    lstTopics: ArrayList<Topic>
-) : ListAdapter(ctx, convertToSOLTOne(lstTopics)) {
+    var ctx : Context,
+    var topics : ArrayList<Topic>
+) : ListAdapter(ctx, convertToSOLTOne(topics)) {
 
-    
+    override fun onContainerLongClick(listableObject: ListableTypeOne, position: Int): Boolean {
+        ListDialog(
+            listableObject.id,
+            listableObject.name,
+            position,
+            this
+        ).show(
+            (ctx as AppCompatActivity).supportFragmentManager, "DisplayListFragment"
+        )
+        return true
+    }
 
 }
 
