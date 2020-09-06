@@ -1,5 +1,6 @@
 package com.alfoirazaballevy.studyhelper.topic.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.alfoirazaballevy.studyhelper.R
 import com.alfoirazaballevy.studyhelper.db.DbHelper
+import com.alfoirazaballevy.studyhelper.topic.question.mo.activities.AddMOQuestion
 
 class TopicPanel(
 
@@ -60,6 +62,10 @@ class TopicPanel(
                 when (menuItem.itemId) {
                     R.id.opt_add_q_mo -> {
                         // Handle MO Question Add.
+                        val newMOIntent = Intent(applicationContext, AddMOQuestion::class.java)
+                        newMOIntent.putExtra("TOPICID", topicId)
+                        newMOIntent.putExtra("TOPICNAME", topicName)
+                        this.startActivity(newMOIntent)
                         true
                     }
                     R.id.opt_add_q_tof -> {

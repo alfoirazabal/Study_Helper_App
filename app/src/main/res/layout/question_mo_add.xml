@@ -30,7 +30,7 @@
     <EditText
         android:id="@+id/etxt_question_text"
         android:layout_width="0dp"
-        android:layout_height="78dp"
+        android:layout_height="60dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
@@ -45,7 +45,7 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
+        android:inputType="numberSigned"
         android:text="Puntaje Máximo:"
         app:layout_constraintBottom_toBottomOf="@+id/etxt_max_score"
         app:layout_constraintStart_toStartOf="@+id/etxt_question_text"
@@ -58,8 +58,10 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
+        android:hint="Puntaje"
+        android:inputType="numberSigned|numberDecimal"
+        android:text="1"
+        android:textAlignment="center"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/etxt_question_text" />
 
@@ -67,7 +69,7 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="Respuesta:"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,29 +77,32 @@
         app:layout_constraintTop_toBottomOf="@+id/etxt_max_score" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recview_answers"
         android:layout_width="0dp"
-        android:layout_height="178dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="@+id/etxt_question_answer"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/textView9" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_add_question"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
         android:text="Respuestas Agregadas:"
         android:textSize="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-        app:layout_constraintStart_toStartOf="@+id/etxt_question_answer" />
+        app:layout_constraintStart_toStartOf="@+id/recview_answers"
+        app:layout_constraintTop_toBottomOf="@+id/btn_add_answer" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_add_question"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:text="Agregar Pregunta"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -111,7 +116,6 @@
         android:layout_marginTop="10dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintEnd_toEndOf="@+id/etxt_question_text"
         app:layout_constraintStart_toStartOf="@+id/etxt_question_text"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
@@ -138,7 +142,7 @@
 
     <TextView
         android:id="@+id/txt_answer_score"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="Puntaje"
         app:layout_constraintBottom_toBottomOf="@+id/skb_answer_score"
@@ -148,18 +152,18 @@
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginStart="10dp"
         android:text="(Tocar para borrar)"
         app:layout_constraintBottom_toBottomOf="@+id/textView9"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toTopOf="@+id/textView9" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_add_answer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:text="Agregar Respuesta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
