@@ -11,7 +11,7 @@ import com.alfoirazaballevy.studyhelper.R
 import com.alfoirazaballevy.studyhelper.db.DbHelper
 import com.alfoirazaballevy.studyhelper.domain.ListableTypeOne
 import com.alfoirazaballevy.studyhelper.domain.Topic
-import com.alfoirazaballevy.studyhelper.layoutadapters.ListAdapterTopic
+import com.alfoirazaballevy.studyhelper.topic.adapters.ListAdapterTopic
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ListTopics() : AppCompatActivity() {

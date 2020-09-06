@@ -1,4 +1,4 @@
-package com.alfoirazaballevy.studyhelper.layoutadapters
+package com.alfoirazaballevy.studyhelper.topic.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.alfoirazaballevy.studyhelper.db.DbHelper
 import com.alfoirazaballevy.studyhelper.domain.ListableTypeOne
 import com.alfoirazaballevy.studyhelper.domain.Topic
+import com.alfoirazaballevy.studyhelper.layoutadapters.ListAdapter
 import com.alfoirazaballevy.studyhelper.topic.activities.TopicPanel
 import com.alfoirazaballevy.studyhelper.topic.dialogs.ListDialog
 

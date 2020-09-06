@@ -10,7 +10,7 @@ import com.alfoirazaballevy.studyhelper.db.DbHelper
 import com.alfoirazaballevy.studyhelper.domain.Subject
 import com.alfoirazaballevy.studyhelper.domain.ListableTypeOne
 import com.alfoirazaballevy.studyhelper.layoutadapters.ListAdapter
-import com.alfoirazaballevy.studyhelper.layoutadapters.ListAdapterSubject
+import com.alfoirazaballevy.studyhelper.subject.adapters.ListAdapterSubject
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlin.collections.ArrayList
 

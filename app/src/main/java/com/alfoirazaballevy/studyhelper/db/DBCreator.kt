@@ -27,6 +27,7 @@ enum class DBTopicAnswer(override val identName : String, override val typeArgs:
     TABLE_TITLE("TopicAnswer", ""),
     COL_ANSWER_ID("AnswerId", "INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT"),
     COL_TOPIC_ID("TopicId", "INTEGER NOT NULL"),
+    COL_QUESTION_TEXT("QuestionText", "CHAR(120) NOT NULL"),
     CONST_FK_TOPIC("", "FOREIGN KEY (TopicId) REFERENCES Topic(TopicId) ON UPDATE CASCADE ON DELETE CASCADE")
 }
 enum class DBTrueOrFalse(override val identName : String, override val typeArgs: String) : DBDefVals {

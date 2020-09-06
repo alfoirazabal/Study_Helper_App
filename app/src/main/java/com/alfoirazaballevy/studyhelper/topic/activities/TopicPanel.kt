@@ -27,13 +27,15 @@ class TopicPanel(
         private lateinit var btnEditQuestion : Button
         private lateinit var btnDeleteQuestion : Button
         private lateinit var btnStartQuiz : ImageButton
+
+        private lateinit var dbHlp : DbHelper
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.topic_panel)
 
-        val dbHlp = DbHelper(applicationContext)
+        dbHlp = DbHelper(applicationContext)
 
         txtTopicName = findViewById(R.id.txt_topic_name)
         txtNumberQuestionsFound = findViewById(R.id.txt_number_questions_found)
@@ -83,6 +85,13 @@ class TopicPanel(
             }
         }
         
+    }
+
+    override fun onResume() {
+        super.onResume()
+        dbHlp = DbHelper(applicationContext)
+        val questionsCount = dbHlp.countTopicQuestions(topicId)
+        txtNumberQuestionsFound.text = questionsCount.toString()
     }
 
 }

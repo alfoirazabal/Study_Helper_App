@@ -5,8 +5,10 @@ import android.content.Context
 import android.database.DatabaseUtils
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.alfoirazaballevy.studyhelper.domain.Answer
 import com.alfoirazaballevy.studyhelper.domain.Subject
 import com.alfoirazaballevy.studyhelper.domain.Topic
+import com.alfoirazaballevy.studyhelper.domain.answertypes.AnswerMO
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -213,6 +215,36 @@ class DbHelper(
             "${DBTopic.COL_ID.identName} = ?",
             arrayOf(topicId.toString())
         )
+        db.close()
+    }
+
+    // Questions
+
+    private fun addTopicQuestion(topicId: Long, questionText : String) : Long {
+        val db = this.writableDatabase
+        val conVals = ContentValues()
+        conVals.put(DBTopicAnswer.COL_TOPIC_ID.identName, topicId)
+        conVals.put(DBTopicAnswer.COL_QUESTION_TEXT.identName, questionText)
+        val insId = db.insert(DBTopicAnswer.TABLE_TITLE.identName, null, conVals)
+        db.close()
+        return insId
+    }
+
+    // MO Questions
+
+    fun addMOQuestion(topicId: Long, questionTitle: String, answers: ArrayList<AnswerMO>) {
+        // 'val db'... must be after 'val newAnswerId'... so as NOT TO OPEN 2 DB TWICE!
+        val newAnswerId = addTopicQuestion(topicId, questionTitle)
+        val db = this.writableDatabase
+        val itAnswers = answers.iterator()
+        while(itAnswers.hasNext()) {
+            val currAnswer = itAnswers.next()
+            val conVals = ContentValues()
+            conVals.put(DBMultOpc.COL_ANSWER_ID.identName, newAnswerId)
+            conVals.put(DBMultOpc.COL_ANSWER_TEXT.identName, currAnswer.answerText)
+            conVals.put(DBMultOpc.COL_SCORE.identName, currAnswer.score)
+            db.insert(DBMultOpc.TABLE_TITLE.identName, null, conVals)
+        }
         db.close()
     }
 

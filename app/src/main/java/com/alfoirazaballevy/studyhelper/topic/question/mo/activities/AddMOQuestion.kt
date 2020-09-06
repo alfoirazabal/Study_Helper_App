@@ -9,8 +9,12 @@ import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alfoirazaballevy.studyhelper.R
+import com.alfoirazaballevy.studyhelper.db.DbHelper
+import com.alfoirazaballevy.studyhelper.domain.answertypes.AnswerMO
+import com.alfoirazaballevy.studyhelper.topic.question.mo.adapters.QuestionMOListAdapter
 
 class AddMOQuestion(
 
@@ -22,6 +26,8 @@ class AddMOQuestion(
     private var seekBarMultiplier : Byte = 10
     private var questionMaxScore : Int = 1
     private var currentAnswerScore : Float = questionMaxScore.toFloat()
+
+    private var newAnswersMO = ArrayList<AnswerMO>()
 
     companion object {
         private lateinit var txtTopicName : TextView
@@ -53,6 +59,13 @@ class AddMOQuestion(
         recviewAnswers = findViewById(R.id.recview_answers)
         btnAddQuestion = findViewById(R.id.btn_add_question)
 
+        val recyclerView = findViewById<RecyclerView>(R.id.recview_answers)
+        recyclerView.setHasFixedSize(true)
+        val layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = layoutManager
+        val adapterRecyclerLinear = QuestionMOListAdapter(this, newAnswersMO)
+        recyclerView.adapter = adapterRecyclerLinear
+
         txtTopicName.text = topicName
         etxtMaxScore.setText(questionMaxScore.toString())
         etxtMaxScore.addTextChangedListener(object : TextWatcher {
@@ -67,6 +80,7 @@ class AddMOQuestion(
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
 
         })
+
         skbAnswerScore.max = etxtMaxScore.text.toString().toInt() * seekBarMultiplier
         skbAnswerScore.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(skb: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -77,6 +91,21 @@ class AddMOQuestion(
             override fun onStopTrackingTouch(p0: SeekBar?) { }
         })
 
+        btnAddAnswer.setOnClickListener {
+            val score = skbAnswerScore.progress.toFloat() / seekBarMultiplier
+            val answerText = etxtQuestionAnswer.text.toString()
+            val answer = AnswerMO(topicId, -1, score, answerText)
+            newAnswersMO.add(0, answer)
+            (recyclerView.adapter as QuestionMOListAdapter).notifyDataSetChanged()
+            etxtQuestionAnswer.setText("")
+        }
+
+        btnAddQuestion.setOnClickListener {
+            val dbHlp = DbHelper(applicationContext)
+            val questionTitle = etxtQuestionText.text.toString()
+            dbHlp.addMOQuestion(topicId, questionTitle,newAnswersMO)
+            finish()
+        }
     }
 
 }

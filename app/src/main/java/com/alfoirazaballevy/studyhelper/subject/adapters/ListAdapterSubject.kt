@@ -1,13 +1,12 @@
-package com.alfoirazaballevy.studyhelper.layoutadapters
+package com.alfoirazaballevy.studyhelper.subject.adapters
 
 import android.content.Context
 import android.content.Intent
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.alfoirazaballevy.studyhelper.db.DbHelper
 import com.alfoirazaballevy.studyhelper.domain.ListableTypeOne
 import com.alfoirazaballevy.studyhelper.domain.Subject
-import com.alfoirazaballevy.studyhelper.subject.activities.ListSubjects
+import com.alfoirazaballevy.studyhelper.layoutadapters.ListAdapter
 import com.alfoirazaballevy.studyhelper.subject.dialogs.ListDialog
 import com.alfoirazaballevy.studyhelper.topic.activities.ListTopics
 import java.util.ArrayList
