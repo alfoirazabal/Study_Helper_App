@@ -19,7 +19,7 @@
         <activity android:name=".subject.activities.AddSubject" />
         <activity android:name=".topic.activities.ListTopics" />
         <activity android:name=".topic.activities.AddTopic" />
+        <activity android:name=".topic.activities.TopicPanel" />
     </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>

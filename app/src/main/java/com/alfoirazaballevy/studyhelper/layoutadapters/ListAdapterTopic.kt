@@ -1,9 +1,12 @@
 package com.alfoirazaballevy.studyhelper.layoutadapters
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
+import com.alfoirazaballevy.studyhelper.db.DbHelper
 import com.alfoirazaballevy.studyhelper.domain.ListableTypeOne
 import com.alfoirazaballevy.studyhelper.domain.Topic
+import com.alfoirazaballevy.studyhelper.topic.activities.TopicPanel
 import com.alfoirazaballevy.studyhelper.topic.dialogs.ListDialog
 
 class ListAdapterTopic(
@@ -20,6 +23,16 @@ class ListAdapterTopic(
         ).show(
             (ctx as AppCompatActivity).supportFragmentManager, "DisplayListFragment"
         )
+        return true
+    }
+
+    override fun onContainerClick(listableObject: ListableTypeOne, position: Int): Boolean {
+        val dbHlp = DbHelper(context)
+        dbHlp.updateTopicLastAccess(listableObject.id)
+        val viewTopicPanel = Intent(context, TopicPanel::class.java)
+        viewTopicPanel.putExtra("TOPICID", listableObject.id)
+        viewTopicPanel.putExtra("TOPICNAME", listableObject.name)
+        context.startActivity(viewTopicPanel)
         return true
     }
 

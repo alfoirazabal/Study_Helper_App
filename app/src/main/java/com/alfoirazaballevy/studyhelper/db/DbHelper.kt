@@ -2,6 +2,7 @@ package com.alfoirazaballevy.studyhelper.db
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.DatabaseUtils
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.alfoirazaballevy.studyhelper.domain.Subject
@@ -186,6 +187,31 @@ class DbHelper(
             DBTopic.TABLE_TITLE.identName,
             "${DBTopic.COL_ID.identName} = ?",
             Array<String>(1){topicId.toString()}
+        )
+        db.close()
+    }
+
+    fun countTopicQuestions(topicId : Long) : Long { // TopicQuestions or Answers
+        val db = this.readableDatabase
+        val count = DatabaseUtils.queryNumEntries(
+            db, DBTopicAnswer.TABLE_TITLE.identName,
+            "${DBTopicAnswer.COL_TOPIC_ID.identName} = ?",
+            arrayOf(topicId.toString())
+        )
+        db.close()
+        return count
+    }
+
+    fun updateTopicLastAccess(topicId: Long) {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        val currDate = SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(Date())
+        contentValues.put(DBTopic.COL_LASTACCESS.identName, currDate)
+        db.update(
+            DBTopic.TABLE_TITLE.identName,
+            contentValues,
+            "${DBTopic.COL_ID.identName} = ?",
+            arrayOf(topicId.toString())
         )
         db.close()
     }

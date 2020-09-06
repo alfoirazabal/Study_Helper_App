@@ -31,7 +31,7 @@ class ListTopics() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.topic_view)
 
-        txtSubjectName = findViewById(R.id.txt_subject_name)
+        txtSubjectName = findViewById(R.id.txt_topic_name)
 
         val bundle = this.intent.extras
         subjectId = bundle!!.getLong("SUBJID")

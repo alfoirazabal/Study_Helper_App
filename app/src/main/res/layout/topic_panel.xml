@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/txt_subject_name"
+        android:id="@+id/txt_topic_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -24,10 +24,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_subject_name">
+        app:layout_constraintTop_toBottomOf="@+id/txt_topic_name">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/btn_start_quiz"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginBottom="15dp"

@@ -7,7 +7,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.addTextChangedListener
 import com.alfoirazaballevy.studyhelper.R
 import com.alfoirazaballevy.studyhelper.db.DbHelper
 
@@ -27,7 +26,7 @@ class AddTopic() : AppCompatActivity() {
         val subjectName = bundle!!.getString("SUBJECTNAME")
         val subjectId = bundle!!.getLong("SUBJECTID")
 
-        txtSubjectName = findViewById(R.id.txt_subject_name)
+        txtSubjectName = findViewById(R.id.txt_topic_name)
         etxtTopicName = findViewById(R.id.etxt_topic_name)
         btnAddTopic = findViewById(R.id.btn_add_topic)
 
