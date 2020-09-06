@@ -28,8 +28,8 @@
 
         <ImageButton
             android:id="@+id/btn_start_quiz"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_marginBottom="15dp"
             app:layout_constraintBottom_toTopOf="@+id/textView5"
             app:layout_constraintEnd_toEndOf="parent"
@@ -72,35 +72,51 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="10dp"
             android:drawableLeft="@android:drawable/ic_menu_add"
             android:text="Agregar Pregunta"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-        <Button
-            android:id="@+id/btn_edit_question"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:drawableLeft="@android:drawable/ic_menu_edit"
-            android:text="Editar Pregunta"
-            app:layout_constraintEnd_toEndOf="@+id/btn_add_question"
-            app:layout_constraintStart_toStartOf="@+id/btn_add_question"
-            app:layout_constraintTop_toBottomOf="@+id/btn_add_question" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_view_stats" />
 
         <Button
             android:id="@+id/btn_delete_question"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:drawableLeft="@android:drawable/ic_menu_delete"
             android:text="Borrar Pregunta"
             app:layout_constraintEnd_toEndOf="@+id/btn_add_question"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/btn_add_question"
             app:layout_constraintTop_toBottomOf="@+id/btn_edit_question" />
+
+        <Button
+            android:id="@+id/btn_edit_question"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@android:drawable/ic_menu_edit"
+            android:text="Editar Pregunta"
+            app:layout_constraintEnd_toEndOf="@+id/btn_add_question"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/btn_add_question"
+            app:layout_constraintTop_toBottomOf="@+id/btn_add_question" />
+
+        <Button
+            android:id="@+id/btn_view_stats"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:drawableLeft="@android:drawable/ic_menu_view"
+            android:text="Ver Estadísticas"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

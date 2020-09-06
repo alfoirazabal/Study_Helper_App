@@ -20,6 +20,7 @@
         <activity android:name=".topic.activities.ListTopics" />
         <activity android:name=".topic.activities.AddTopic" />
         <activity android:name=".topic.activities.TopicPanel" />
+        <activity android:name=".topic.question.mo.activities.AddMOQuestion" />
     </application>
 
 </manifest>
