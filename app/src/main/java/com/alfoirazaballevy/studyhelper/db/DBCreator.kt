@@ -35,7 +35,6 @@ enum class DBTrueOrFalse(override val identName : String, override val typeArgs:
     COL_ANSWER_ID("AnswerId", "INTEGER NOT NULL"),
     COL_QUESTION_POSITIVE("QuestionPositive", "CHAR(120) NOT NULL"),
     COL_QUESTION_NEGATIVE("QuestionNegative", "CHAR(120) NOT NULL"),
-    COL_RESULT_POSITIVE("ResultPositive", "CHAR(1) NOT NULL"),
     COL_SCORE("Score", "REAL(3, 1) NOT NULL DEFAULT 1"),
     CONST_FK_TOPIC_ANSWER("", "FOREIGN KEY (AnswerId) REFERENCES TopicAnswer(AnswerId) ON UPDATE CASCADE ON DELETE CASCADE")
 }

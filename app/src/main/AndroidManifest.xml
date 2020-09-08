@@ -22,6 +22,7 @@
         <activity android:name=".topic.activities.TopicPanel" />
         <activity android:name=".topic.question.mo.activities.AddMOQuestion"
             android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".topic.question.tf.activities.AddTFQuestion" />
     </application>
 
 </manifest>

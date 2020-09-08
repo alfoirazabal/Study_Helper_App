@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.alfoirazaballevy.studyhelper.R
 import com.alfoirazaballevy.studyhelper.db.DbHelper
 import com.alfoirazaballevy.studyhelper.topic.question.mo.activities.AddMOQuestion
+import com.alfoirazaballevy.studyhelper.topic.question.tf.activities.AddTFQuestion
 
 class TopicPanel(
 
@@ -72,6 +73,10 @@ class TopicPanel(
                     }
                     R.id.opt_add_q_tof -> {
                         // Handle TOF Question Add.
+                        val newTFIntent = Intent(applicationContext, AddTFQuestion::class.java)
+                        newTFIntent.putExtra("TOPICID", topicId)
+                        newTFIntent.putExtra("TOPICNAME", topicName)
+                        this.startActivity(newTFIntent)
                         true
                     }
                     R.id.opt_add_q_textual -> {

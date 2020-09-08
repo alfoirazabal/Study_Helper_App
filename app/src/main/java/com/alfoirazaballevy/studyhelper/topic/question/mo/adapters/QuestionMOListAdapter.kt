@@ -32,6 +32,9 @@ class QuestionMOListAdapter(
         MyHolder.txtPuntaje.text = currAnswer.score.toString()
         MyHolder.containerAnswer.setOnClickListener {
             // Remove answer...
+            answersMO.remove(currAnswer)
+            notifyItemRemoved(position)
+            holder.itemView.visibility = View.GONE
         }
     }
 

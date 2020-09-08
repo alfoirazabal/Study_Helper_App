@@ -248,4 +248,24 @@ class DbHelper(
         db.close()
     }
 
+    // TF Questions
+
+    fun addTFQuestion(
+        topicId: Long,
+        questionTitle: String,
+        answerT: String,
+        answerF: String,
+        score : Float
+    ) {
+        val newAnswerId = addTopicQuestion(topicId, questionTitle)
+        val db = this.writableDatabase
+        val conVals = ContentValues()
+        conVals.put(DBTrueOrFalse.COL_ANSWER_ID.identName, newAnswerId)
+        conVals.put(DBTrueOrFalse.COL_QUESTION_POSITIVE.identName, answerT)
+        conVals.put(DBTrueOrFalse.COL_QUESTION_NEGATIVE.identName, answerF)
+        conVals.put(DBTrueOrFalse.COL_SCORE.identName, score)
+        db.insert(DBTrueOrFalse.TABLE_TITLE.identName, null, conVals)
+        db.close()
+    }
+
 }
