@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.alfoirazaballevy.studyhelper.R
 import com.alfoirazaballevy.studyhelper.db.DbHelper
 import com.alfoirazaballevy.studyhelper.topic.question.mo.activities.AddMOQuestion
+import com.alfoirazaballevy.studyhelper.topic.question.textual.AddTextualQuestion
 import com.alfoirazaballevy.studyhelper.topic.question.tf.activities.AddTFQuestion
 
 class TopicPanel(
@@ -81,6 +82,10 @@ class TopicPanel(
                     }
                     R.id.opt_add_q_textual -> {
                         // Handle Textual Question Add.
+                        val newTQIntent = Intent(applicationContext, AddTextualQuestion::class.java)
+                        newTQIntent.putExtra("TOPICID", topicId)
+                        newTQIntent.putExtra("TOPICNAME", topicName)
+                        this.startActivity(newTQIntent)
                         true
                     }
                     else -> {

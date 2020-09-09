@@ -268,4 +268,22 @@ class DbHelper(
         db.close()
     }
 
+    // Textual Questions
+
+    fun addTextualQuestion(
+        topicId : Long,
+        questionTitle: String,
+        questionAnswer: String,
+        score: Float
+    ) {
+        val newAnswerId = addTopicQuestion(topicId, questionTitle)
+        val db = this.writableDatabase
+        val conVals = ContentValues()
+        conVals.put(DBTextualQuestion.COL_ANSWER_ID.identName, newAnswerId)
+        conVals.put(DBTextualQuestion.COL_ANSWER_TEXT.identName, questionAnswer)
+        conVals.put(DBTextualQuestion.COL_SCORE.identName, score)
+        db.insert(DBTextualQuestion.TABLE_TITLE.identName, null, conVals)
+        db.close()
+    }
+
 }

@@ -48,7 +48,7 @@ enum class DBMultOpc(override val identName : String, override val typeArgs: Str
 enum class DBTextualQuestion(override val identName : String, override val typeArgs: String) : DBDefVals {
     TABLE_TITLE("TextualQuestion", ""),
     COL_ANSWER_ID("AnswerId", "INTEGER NOT NULL"),
-    COL_QUESTION("Question", "CHAR(120) NOT NULL"),
+    COL_ANSWER_TEXT("AnswerText", "CHAR(120) NOT NULL"),
     COL_SCORE("Score", "REAL(3, 1) NOT NULL DEFAULT 1"),
     CONST_FK_TOPIC_ANSWER("", "FOREIGN KEY (AnswerId) REFERENCES TopicAnswer(AnswerId) ON UPDATE CASCADE ON DELETE CASCADE")
 }
