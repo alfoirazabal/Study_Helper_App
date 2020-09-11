@@ -1,3 +1,27 @@
 <resources>
-    <string name="app_name">StudyHelper</string>
+    <string name="app_name" translatable="false">StudyHelper</string>
+    <string name="add_question_required">Question text is required</string>
+    <string name="add_answer_required">Answer text is required</string>
+    <string name="add_score_required">Score is required</string>
+    <string name="question">Question</string>
+    <string name="answer">Answer</string>
+    <string name="score">Score</string>
+    <string name="add">Add</string>
+    <string name="add_answer">Add Answer</string>
+    <string name="add_question">Add Question</string>
+    <string name="last_accessed">Last Accessed</string>
+    <string name="max_score">Max Score</string>
+    <string name="added_answers">New Answers</string>
+    <string name="tap_to_delete">Tap to Delete</string>
+    <string name="right_answer">Right Answer</string>
+    <string name="wrong_answer">Wrong Answer</string>
+    <string name="subject_name">Subject Name</string>
+    <string name="add_subject">Add Subject</string>
+    <string name="add_topic">Add Topic</string>
+    <string name="topic_name">Topic Name</string>
+    <string name="begin_quiz">Begin Quiz</string>
+    <string name="questions_count">Total Questions</string>
+    <string name="view_stats">View Stats</string>
+    <string name="edit_questions">Edit Questions</string>
+    <string name="delete_questions">Delete Questions</string>
 </resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add_question_required">Debe agregar una pregunta</string>
+    <string name="add_answer_required">Debe agregar una respuesta</string>
+    <string name="add_score_required">Debe agregar un puntaje</string>
+    <string name="question">Pregunta</string>
+    <string name="answer">Respuesta</string>
+    <string name="score">Puntaje</string>
+    <string name="add">Agregar</string>
+    <string name="add_answer">Agregar Respuesta</string>
+    <string name="add_question">Agregar Pregunta</string>
+    <string name="last_accessed">Último Acceso</string>
+    <string name="max_score">Puntaje Máximo</string>
+    <string name="added_answers">Respuestas Agregadas</string>
+    <string name="tap_to_delete">Tocar para Borrar</string>
+    <string name="right_answer">Respuesta Correcta</string>
+    <string name="wrong_answer">Respuesta Incorrecta</string>
+    <string name="subject_name">Nombre de la Materia</string>
+    <string name="add_subject">Agregar Materia</string>
+    <string name="add_topic">Agregar Tema</string>
+    <string name="topic_name">Nombre del Tema</string>
+    <string name="begin_quiz">Empezar Cuestionario</string>
+    <string name="questions_count">Número de Preguntas</string>
+    <string name="view_stats">Ver Estadísticas</string>
+    <string name="edit_questions">Editar Preguntas</string>
+    <string name="delete_questions">Borrar Preguntas</string>
+</resources>

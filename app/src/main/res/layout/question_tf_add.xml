@@ -26,7 +26,7 @@
 
         android:layout_marginEnd="10dp"
         android:background="#DEECD7"
-        android:hint="Respuesta Verdadera"
+        android:hint="@string/right_answer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
@@ -47,7 +47,7 @@
         android:layout_marginEnd="10dp"
 
         android:background="#C1CFE6"
-        android:hint="Pregunta"
+        android:hint="@string/question"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +69,7 @@
         android:layout_marginEnd="10dp"
 
         android:background="#D6C4C4"
-        android:hint="Respuesta Falsa"
+        android:hint="@string/wrong_answer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
@@ -89,7 +89,7 @@
         android:layout_marginEnd="10dp"
 
         android:background="#c1cfe6"
-        android:hint="Puntaje"
+        android:hint="@string/score"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout6">
@@ -109,7 +109,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="Agregar"
+        android:text="@string/add_question"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="Empezar Cuestionario"
+            android:text="@string/begin_quiz"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:text="Número de Preguntas:"
+            android:text="@string/questions_count"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -75,7 +75,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
             android:drawableLeft="@android:drawable/ic_menu_add"
-            android:text="Agregar Pregunta"
+            android:text="@string/add_question"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:drawableLeft="@android:drawable/ic_menu_delete"
-            android:text="Borrar Pregunta"
+            android:text="@string/delete_questions"
             app:layout_constraintEnd_toEndOf="@+id/btn_add_question"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/btn_add_question"
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:drawableLeft="@android:drawable/ic_menu_edit"
-            android:text="Editar Pregunta"
+            android:text="@string/edit_questions"
             app:layout_constraintEnd_toEndOf="@+id/btn_add_question"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/btn_add_question"
@@ -113,7 +113,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
             android:drawableLeft="@android:drawable/ic_menu_view"
-            android:text="Ver Estadísticas"
+            android:text="@string/view_stats"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
